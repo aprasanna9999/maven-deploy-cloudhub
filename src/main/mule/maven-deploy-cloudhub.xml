@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="daf765fd-1d46-4704-b055-585cf398b453" >
+		<http:listener-connection host="${http.host}" port="${http.port}" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="a3c5cd16-e172-4cdf-b07b-99a9fd21bfc9" file="${env}.yaml" />
+	<global-property doc:name="Global Property" doc:id="d3fa0155-79fd-415c-9939-8714e8a3d839" name="env" value="dev" />
+	<flow name="maven-deploy-cloudhubFlow" doc:id="1d6a50dc-2b60-4d41-9f4f-12c2af1e3b29" >
+		<http:listener doc:name="Listener" doc:id="5e1e16ce-5252-4226-8973-26136fbd90cc" config-ref="HTTP_Listener_config" path="/mm"/>
+		<set-payload value='"welcome to mulesoft technology latest verson"' doc:name="Set Payload" doc:id="9a169bff-3db8-4c51-b88d-f05302975696" />
+	</flow>
+</mule>
